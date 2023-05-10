@@ -8,6 +8,7 @@ class contrent(models.Model):
     Apellidos = models.CharField(max_length=255)
     Pasaporte = models.CharField(max_length=125)
     No_registro = models.IntegerField(max_length=10)
+    Pais = models.CharField(max_length=50)
     
 
 
