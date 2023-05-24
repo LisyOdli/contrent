@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de cálculo de obligaciones fiscales</title>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li>
+                <a href="/registro_clientes">Registro de Clientes</a>
+            </li>
+            <li>
+                <a href="/listado_clientes">Lista de Clientes</a>
+            </li>
+            <li>
+                <a href="/cerrar_sesion">Cerrar sesión</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="/registrarse">Registrarse</a>
+            </li>
+            <li>
+                <a href="/iniciar_sesion">Iniciar Sesión</a>
+            </li>
+            {% endif %}
+            
+        </ul>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

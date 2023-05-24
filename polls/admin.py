@@ -1,5 +1,8 @@
 from django.contrib import admin
-from polls.models import contrent
+from polls.models import registro_clientes
 
 # Register your models here.
-admin.site.register(contrent)
+class registro_admin(admin.ModelAdmin):
+    readonly_fields = ("Creado", )
+    
+admin.site.register(registro_clientes, registro_admin)

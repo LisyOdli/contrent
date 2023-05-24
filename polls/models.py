@@ -1,17 +1,24 @@
 from django.db import models
+from django.contrib.auth.models import User 
 
 # Create your models here.
 
-class contrent(models.Model):
-    No_de_orden = models.CharField(max_length=50)
+class registro_clientes(models.Model):
+    No_orden = models.CharField(max_length=50)
     Nombre = models.CharField(max_length=125)
     Apellidos = models.CharField(max_length=255)
-    Pasaporte = models.CharField(max_length=125)
-    No_registro = models.IntegerField(max_length=10)
-    Pais = models.CharField(max_length=50)
+    Ciudadano = models.CharField(max_length=125)
+    Documento_identidad = models.CharField(max_length=125)
+    Objeto_arrendamiento = models.CharField(max_length=125)
+    Fecha_entrada = models.DateField(auto_now=False, auto_now_add=False)
+    Fecha_salida = models.DateField(auto_now=False, auto_now_add=False)
+    Importe_arrendamiento = models.FloatField()
+    Importe_servicio = models.FloatField()
+    Total_ingreso = models.FloatField()
+    Recibo_pago = models.IntegerField()
+    Estado = models.CharField(max_length=50)
+    Creado = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     
-
-
-
-    def _str_(self) -> str:
-        return self.Nombre, self.Apellidos, self.Pasaporte, self.No_de_orden, self.No_registro
+    def __str__(self):
+        return self.Nombre

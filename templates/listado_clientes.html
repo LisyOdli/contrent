@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Listado de Clientes Registrados</h1>
+
+<ul>
+    {% for registro_clientes in listado %}
+    <li>{{registro_clientes}}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
+
