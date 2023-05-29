@@ -1,0 +1,17 @@
+
+
+{% block content %}
+<h1>Autenticarse</h1>
+
+{{error}}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>
+        Iniciar Sesión
+    </button>
+
+</form>
+
+{% endblock %}
