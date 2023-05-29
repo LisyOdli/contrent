@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'contrent.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'contrent',
+        'NAME': 'conarren',
         'USER': 'postgres',
         'PASSWORD': 'postgre',
         'HOST': 'localhost',
@@ -109,7 +109,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
+
 
 TIME_ZONE = 'UTC'
 

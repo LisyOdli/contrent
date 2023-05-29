@@ -1,5 +1,5 @@
 from django.contrib import admin
-from polls.models import contrent
+from polls.models import Clientes
 
 # Register your models here.
-admin.site.register(contrent)
+admin.site.register(Clientes)
