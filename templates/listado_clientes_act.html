@@ -117,7 +117,8 @@
         </div>
         <div class="col-md-9">
             <!-- Información -->
-            <h1 class="text-center">Listado de clientes registrados</h1>
+            <br>
+            <h1 class="text-center">Listado de clientes actuales</h1>
 
             <ul>
                 
@@ -132,30 +133,37 @@
                         <th scope="col">Entrada</th>
                         <th scope="col">Cant. Noches</th>
                         <th scope="col">Salida</th>
-                        <th scope="col">Ingreso de arrendamiento</th>
+                        <th scope="col">Ingreso de alojamiento</th>
                         <th scope="col">Ingreso de desayuno</th>
                         <th scope="col">Ingreso de almuerzo</th>
                         <th scope="col">Ingreso total</th>
-                        
+                       
                       </tr>
                     </thead>
                     <tbody>
                         {% for lista_clientes in lista_clientes %}
                       <tr>
                         
-                        <td>{{lista_clientes.No_de_orden}}</td>
-                        <td>{{lista_clientes.Documento_identidad}}</td>
-                        <td>{{lista_clientes.Nombre}}</td>
-                        <td>{{lista_clientes.Apellidos}}</td>
-                        <td>{{lista_clientes.Ciudadano}}</td>
-                        <td>{{lista_clientes.Fecha_entrada}}</td>
-                        <td>{{lista_clientes.Cantidad_noches}}</td>
-                        <td>{{lista_clientes.Fecha_salida}}</td>
-                        <td>{{lista_clientes.Ingreso_arrendamiento}}</td>
-                        <td>{{lista_clientes.Ingreso_desayuno}}</td>
-                        <td>{{lista_clientes.Ingreso_almuerzo}}</td>
-                        <td>{{lista_clientes.Ingreso_total}}</td>
-
+                        <td>{{lista_clientes.no_de_orden}}</td>
+                        <td>{{lista_clientes.documento_identidad}}</td>
+                        <td>{{lista_clientes.nombre}}</td>
+                        <td>{{lista_clientes.apellidos}}</td>
+                        <td>{{lista_clientes.ciudadano}}</td>
+                        <td>{{lista_clientes.fecha_entrada|date:"d/m/Y"}}</td>
+                        <td>{{lista_clientes.cantidad_noches}}</td>
+                        <td>{{lista_clientes.fecha_salida|date:"d/m/Y"}}</td>
+                        <td>{{lista_clientes.ingreso_alojamiento}}</td>
+                        <td>{{lista_clientes.ingreso_desayuno}}</td>
+                        <td>{{lista_clientes.ingreso_almuerzo}}</td>
+                        <td>{{lista_clientes.ingreso_total}}</td>
+                        <td style="white-space: nowrap;">
+                            <a href="/eliminar_cliente/{{cliente.documento_identidad}}"
+                                class="btn-outline-secondary d-inline-block"><i class="bi bi-eye-fill"></i></a>
+                                <a href="/edicion_cliente/{{cliente.documento_identidad}}"
+                                class="btn-outline-secondary d-inline-block"><i class="bi bi-pencil"></i></a>
+                            <a href="/eliminar_cliente/{{cliente.documento_identidad}}"
+                                class="btn-outline-secondary d-inline-block"><i class="bi bi-trash"></i></a>
+                        </td>
                         
                         
                       </tr>
@@ -168,7 +176,8 @@
                 
                 
             </ul>
-                
+            <a class="col-12 d-grid gap-4 d-md-flex justify-content-md-start" href="/home" style="position: fixed; bottom: 25px;">Volver al menú principal</a>    </>
+
 
         </div>
     </div>

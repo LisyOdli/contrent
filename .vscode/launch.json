@@ -10,7 +10,7 @@
             "python": "D:/Programacion/Lenguajes y Frameworks/Python/Estacion de Trabajo/Proyectos_Django/conarren/.env/Scripts/python",
             "type": "python",
             "request": "launch",
-            "program": "D:/Programacion/Lenguajes y Frameworks/Python/Estacion de Trabajo/Proyectos_Django/conarren/.env/conarren/manage.py",
+            "program": "D:/Programacion/Lenguajes y Frameworks/Python/Estacion de Trabajo/Proyectos_Django/conarren/.env/contrent/manage.py",
             "args": [
                 "runserver"
             ],

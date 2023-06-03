@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Clientes
+from .models import Clientes, GastosArr, GastosEspacio
 from django import forms
 from .models import IngresoEspacio
 from django.forms.widgets import SelectDateWidget
@@ -34,8 +34,8 @@ class ClientesForm(ModelForm):
         model = Clientes 
         fields = ['no_de_orden', 'documento_identidad', 'nombre', 'apellidos', 'citizenship', 'fecha_nacimiento', 
                   'estado', 'fecha_entrada', 'fecha_salida', 'cantidad_noches', 'objeto_arrendamiento', 
-                  'recibo_pago', 'info_registro', 'ingreso_desayuno', 
-                  'ingreso_almuerzo',  ]
+                  'recibo_pago', 'info_registro', 'ingreso_alojamiento', 'ingreso_desayuno', 
+                  'ingreso_almuerzo', 'ingreso_total', ]
         labels = {
                 'no_de_orden': 'No. Orden',
                 'documento_identidad': 'Documento de identidad',
@@ -50,10 +50,10 @@ class ClientesForm(ModelForm):
                 'objeto_arrendamiento': 'Objeto de Arrendamiento',
                 'recibo_pago': 'Recibo de Pago',
                 'info_registro': 'Info de registro', 
-                #'ingreso_alojamiento': 'Ingreso de arrendamiento', # Sale del precio de la Habitacion
+                'ingreso_alojamiento': 'Ingreso de arrendamiento', # Sale del precio de la Habitacion
                 'ingreso_desayuno': 'Ingreso de desayuno',
                 'ingreso_almuerzo': 'Ingreso de almuerzo',
-                #'ingreso_total': 'Ingreso total', #Suma de ingreso_almuerzo + ingreso_desayuno +ingreso_alojamiento
+                'ingreso_total': 'Ingreso total', #Suma de ingreso_almuerzo + ingreso_desayuno +ingreso_alojamiento
         }
         # widgets = {
         # 'Fecha_nacimiento': SelectDateWidget(),
@@ -62,18 +62,66 @@ class ClientesForm(ModelForm):
         # }
 
 class EspacioForm(ModelForm):
-    Cantidad_espacios = forms.IntegerField()
-    Importe_cobrado = forms.FloatField()
-    Periodo_cobrado = forms.CharField()
+    cantidad_espacios = forms.IntegerField()
+    importe_cobrado = forms.FloatField()
+    periodo_cobrado = forms.CharField()
     
 
     class Meta:
         model = IngresoEspacio
-        fields = ['Cantidad_espacios', 'Importe_cobrado', 'Periodo_cobrado']
+        fields = ['cantidad_espacios', 'importe_cobrado', 'periodo_cobrado']
         labels = {
-                'Cantidad_espacios': 'Cantidad de espacios',
-                'Importe_cobrado': 'Importe cobrado',
-                'Periodo_cobrado': 'Periodo cobrado',
+                'cantidad_espacios': 'cantidad de espacios',
+                'importe_cobrado': 'importe cobrado',
+                'periodo_cobrado': 'periodo cobrado',
                 }
-      
-     
+
+class GastoArrForm(ModelForm):
+
+    fecha = forms.DateField()
+    detalle_gasto = forms.CharField()
+    concepto = forms.CharField()
+    unidad_medida = forms.CharField()
+    cantidad = forms.IntegerField()
+    precio_unitario = forms.FloatField()
+    importe = forms.FloatField()
+
+    class Meta: 
+        model = GastosArr
+        fields = ['fecha', 'detalle_gasto', 'concepto', 'unidad_medida', 
+                  'cantidad', 'precio_unitario', 'importe']   
+        labels = {
+                 'fecha' :  'fecha', 
+                 'detalle_gasto' :  'detalle_gasto', 
+                 'concepto' :  'concepto', 
+                 'unidad_medida' :  'unidad_medida', 
+                 'cantidad' :  'cantidad', 
+                 'precio_unitario' :  'precio_unitario', 
+                 'importe' :  'importe', 
+
+        }
+
+class GastoEspacioForm(ModelForm):
+
+    fecha = forms.DateField()
+    detalle_gasto = forms.CharField()
+    concepto = forms.CharField()
+    unidad_medida = forms.CharField()
+    cantidad = forms.IntegerField()
+    precio_unitario = forms.FloatField()
+    importe = forms.FloatField()
+
+    class Meta: 
+        model = GastosEspacio
+        fields = ['fecha', 'detalle_gasto', 'concepto', 'unidad_medida', 
+                  'cantidad', 'precio_unitario', 'importe']   
+        labels = {
+                 'fecha' :  'fecha', 
+                 'detalle_gasto' :  'detalle_gasto', 
+                 'concepto' :  'concepto', 
+                 'unidad_medida' :  'unidad_medida', 
+                 'cantidad' :  'cantidad', 
+                 'precio_unitario' :  'precio_unitario', 
+                 'importe' :  'importe', 
+
+        }
