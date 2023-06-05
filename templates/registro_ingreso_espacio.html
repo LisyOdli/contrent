@@ -38,13 +38,16 @@
 
                         <ul class="nav nav-pills collapse ms-2 flex-column" id="sidemenu" data-bs-parent="#menu">
                             <li class="nav-item my-sm-1 my-2">
-                                <a class="nav-link text-white" href="/registro_clientes" aria-current="page">- Registro de clientes</a>
+                                <a class="nav-link text-white" href="/registro_clientes" aria-current="page">- Registro
+                                    de clientes</a>
                             </li>
                             <li class="nav-item my-sm-1 my-2">
-                                <a class="nav-link text-white" href="/listado_clientes_reg">- Listado de clientes registrados</a>
+                                <a class="nav-link text-white" href="/listado_clientes_reg">- Listado de clientes
+                                    registrados</a>
                             </li>
                             <li class="nav-item my-sm-1 my-2">
-                                <a class="nav-link text-white" href="/listado_clientes_act">- Listado de clientes actuales</a>
+                                <a class="nav-link text-white" href="/listado_clientes_act">- Listado de clientes
+                                    actuales</a>
                             </li>
                             <li class="nav-item my-sm-1 my-2">
                                 <a class="nav-link text-white" href="/indice_ocupacional">- Índice Ocupacional</a>
@@ -70,17 +73,20 @@
                         <ul class="nav nav-pills flex-column mt-2 mt-sm-0 collapse ms-1" id="sidemenu2"
                             data-bs-parent="#menu1">
                             <li class="nav-item my-sm-1 my-2">
-                                <a class="nav-link text-white" href="/registro_ingreso_espacio" aria-current="page">- Registro del ingreso por
+                                <a class="nav-link text-white" href="/registro_ingreso_espacio" aria-current="page">-
+                                    Registro del ingreso por
                                     espacio</a>
                             </li>
                             <li class="nav-item my-sm-1 my-2">
-                                <a class="nav-link text-white" href="/listado_ingresos_espacio">- Listado de ingreso de espacio</a>
+                                <a class="nav-link text-white" href="/listado_ingresos_espacio">- Listado de ingreso de
+                                    espacio</a>
                             </li>
                         </ul>
-                 </ul>
+                </ul>
                 <ul class="nav nav-pills flex-column mt-2 mt-sm-0" id="menu">
                     <li class="nav-item my-sm-1 my-2">
-                        <a href="/listado_ingresos_totales" class="nav-link text-white text-center text-sm-start" aria-current="page">
+                        <a href="/listado_ingresos_totales" class="nav-link text-white text-center text-sm-start"
+                            aria-current="page">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-list-ol" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
@@ -114,35 +120,72 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <div class="col-md-9">
             <!-- Información -->
-            <h1>Título de la página</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis elit a enim bibendum luctus. Aenean euismod, elit vel bibendum sagittis, leo neque bibendum felis, ut lacinia velit quam ut magna. Mauris id bibendum velit. </p>
+            <br>
+            <h1 class="text-center">Registro del ingreso de arrendamiento de espacios</h1>
             
-            <form action="/registro_ingreso_espacio/" method="POST">
+            <br>
+            <div class="d-flex align-items-center justify-content-center vh-40">
+            <form class="g-3 p-1" action="/registro_ingreso_espacio/" method="POST">
                 {% csrf_token %}
 
                 {% if form.errors %}
-                {{form.errors}}
+                <h5 class="alert alert-danger">{{form.errors}}</h5>
                 {% endif %}
-
-                {{form.as_p}}
                 
-                <p>Fecha: {{Fecha}}</p>
-                <button class="btn btn-primary my-class" style="margin-top: 100px; margin-left: 20px;">
+                <div class="col-md-12">
+                    <label for="validationDefault03" class="form-label">Cantidad de espacios arrendados</label>
+                    <input type="number" name="cantidad_espacios" min='0' class="form-control" id="validationDefault03"
+                        required>
+                </div>
+                <br>
+                <div class="col-md-12">
+                    <label for="validationDefault05" class="form-label">Importe cobrado</label>
+                    <input type="number" name="importe_cobrado" class="form-control" id="validationDefault05"
+                        required>
+                </div>
+                <br>
+                <div class="col-md-12">
+                    <label for="validationDefault04" class="form-label">Periodo cobrado</label>
+                    <select class="form-select" name="periodo_cobrado" id="validationDefault04" required>
+                        <option selected disabled value="">Eligir...</option>
+                        <option>Enero</option>
+                        <option>Febrero</option>
+                        <option>Marzo</option>
+                        <option>Abril</option>
+                        <option>Mayo</option>
+                        <option>Junio</option>
+                        <option>Julio</option>
+                        <option>Agosto</option>
+                        <option>Septiembre</option>
+                        <option>Octubre</option>
+                        <option>Noviembre</option>
+                        <option>Diciembre</option>
+                    </select>
+                </div>
+                <br>    
+                <br>
+                <div class="col-12 d-grid gap-4 d-md-flex justify-content-md-end">
+                    <br>
+                    <br>
+                <button class="btn btn-primary" type="submit">
                     Registrar
                 </button>
 
-                <button class="btn btn-primary my-class" style="margin-top: 100px; margin-left: 20px">
-                    Cancelar
-                </button>
-
+                    <button class="btn btn-primary">
+                        Cancelar
+                    </button>
+                </div>
             </form>
+        </div>
+        <a class="col-12 d-grid gap-4 d-md-flex justify-content-md-start" href="/home" style="position: fixed; bottom: 25px;">Volver al menú principal</a>    </>
+
         </div>
     </div>
 
 
-    
+
     {% endblock %}

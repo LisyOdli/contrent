@@ -5,6 +5,16 @@
     .nav-pills li a:hover {
         background-color: rgb(140, 61, 243);
     }
+    #miTabla {
+        border-collapse: collapse;
+        height: 5px;
+      }
+        #miTabla td, #miTabla th {
+        padding: 0;
+        height: 5px;
+        border: 1px solid rgb(163, 160, 160); /* Agrega borde para visualizar mejor las celdas */
+      }
+   
 </style>
 
 <div class="container-fluid">
@@ -38,13 +48,16 @@
 
                         <ul class="nav nav-pills collapse ms-2 flex-column" id="sidemenu" data-bs-parent="#menu">
                             <li class="nav-item my-sm-1 my-2">
-                                <a class="nav-link text-white" href="/registro_clientes" aria-current="page">- Registro de clientes</a>
+                                <a class="nav-link text-white" href="/registro_clientes" aria-current="page">- Registro
+                                    de clientes</a>
                             </li>
                             <li class="nav-item my-sm-1 my-2">
-                                <a class="nav-link text-white" href="/listado_clientes_reg">- Listado de clientes registrados</a>
+                                <a class="nav-link text-white" href="/listado_clientes_reg">- Listado de clientes
+                                    registrados</a>
                             </li>
                             <li class="nav-item my-sm-1 my-2">
-                                <a class="nav-link text-white" href="/listado_clientes_act">- Listado de clientes actuales</a>
+                                <a class="nav-link text-white" href="/listado_clientes_act">- Listado de clientes
+                                    actuales</a>
                             </li>
                             <li class="nav-item my-sm-1 my-2">
                                 <a class="nav-link text-white" href="/indice_ocupacional">- Índice Ocupacional</a>
@@ -70,17 +83,20 @@
                         <ul class="nav nav-pills flex-column mt-2 mt-sm-0 collapse ms-1" id="sidemenu2"
                             data-bs-parent="#menu1">
                             <li class="nav-item my-sm-1 my-2">
-                                <a class="nav-link text-white" href="/registro_ingreso_espacio" aria-current="page">- Registro del ingreso por
+                                <a class="nav-link text-white" href="/registro_ingreso_espacio" aria-current="page">-
+                                    Registro del ingreso por
                                     espacio</a>
                             </li>
                             <li class="nav-item my-sm-1 my-2">
-                                <a class="nav-link text-white" href="/listado_ingresos_espacio">- Listado de ingreso de espacio</a>
+                                <a class="nav-link text-white" href="/listado_ingresos_espacio">- Listado de ingreso de
+                                    espacio</a>
                             </li>
                         </ul>
-                 </ul>
+                </ul>
                 <ul class="nav nav-pills flex-column mt-2 mt-sm-0" id="menu">
                     <li class="nav-item my-sm-1 my-2">
-                        <a href="/listado_ingresos_totales" class="nav-link text-white text-center text-sm-start" aria-current="page">
+                        <a href="/listado_ingresos_totales" class="nav-link text-white text-center text-sm-start"
+                            aria-current="page">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-list-ol" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
@@ -117,62 +133,148 @@
         </div>
         <div class="col-md-9">
             <!-- Información -->
-            <h1 class="text-center">Listado de clientes registrados</h1>
+            <br>
+            <h1 class="text-center">Listado de clientes actuales</h1>
+            <br>
 
             <ul>
-                
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">No. Orden</th>
-                        <th scope="col">Indentidad</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellidos</th>
-                        <th scope="col">Ciudadano</th>
-                        <th scope="col">Entrada</th>
-                        <th scope="col">Cant. Noches</th>
-                        <th scope="col">Salida</th>
-                        <th scope="col">Ingreso de arrendamiento</th>
-                        <th scope="col">Ingreso de desayuno</th>
-                        <th scope="col">Ingreso de almuerzo</th>
-                        <th scope="col">Ingreso total</th>
-                        
-                      </tr>
-                    </thead>
-                    <tbody>
-                        {% for lista_clientes in lista_clientes %}
-                      <tr>
-                        
-                        <td>{{lista_clientes.No_de_orden}}</td>
-                        <td>{{lista_clientes.Documento_identidad}}</td>
-                        <td>{{lista_clientes.Nombre}}</td>
-                        <td>{{lista_clientes.Apellidos}}</td>
-                        <td>{{lista_clientes.Ciudadano}}</td>
-                        <td>{{lista_clientes.Fecha_entrada}}</td>
-                        <td>{{lista_clientes.Cantidad_noches}}</td>
-                        <td>{{lista_clientes.Fecha_salida}}</td>
-                        <td>{{lista_clientes.Ingreso_arrendamiento}}</td>
-                        <td>{{lista_clientes.Ingreso_desayuno}}</td>
-                        <td>{{lista_clientes.Ingreso_almuerzo}}</td>
-                        <td>{{lista_clientes.Ingreso_total}}</td>
 
-                        
-                        
-                      </tr>
-                      
-                    </tbody>
-                    {% endfor %}
-        
+                <form method="get">
+    <input type="text" name="q" placeholder="Buscar por nombre">
+    <button type="submit">Buscar</button>
+</form>
+            <br>
+            
 
-                  </table>
-                
-                
+                <div style="height: 400px; overflow-y: auto;">
+                    <table class="table table-striped table-bordered text-center" id="miTabla" style="font-size: 13px;">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col" class = "col">No.</th>
+                                <th scope="col" class = "col-1">No. Orden</th>
+                                <th scope="col" class = "col-1">Indentidad</th>
+                                <th scope="col" class = "col-1">Nombre</th>
+                                <th scope="col" class = "col-1">Apellidos</th>
+                                <th scope="col" class = "col-1">Ciudadano</th>
+                                <th scope="col" class = "col-1">Entrada</th>
+                                <th scope="col" class = "col-1">Cant. Noches</th>
+                                <th scope="col" class = "col-1">Salida</th>
+                                <th scope="col" class = "col-1">Ingreso de alojamiento</th>
+                                <th scope="col" class = "col-1">Ingreso de desayuno</th>
+                                <th scope="col" class = "col-1">Ingreso de almuerzo</th>
+                                <th scope="col" class = "col-1">Ingreso total</th>
+                                <th scope="col" class = "col-1">Acciones</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 13px;">
+                            {% for lista_clientes in lista_clientes %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{lista_clientes.no_de_orden}}</td>
+                                <td>{{lista_clientes.documento_identidad}}</td>
+                                <td>{{lista_clientes.nombre}}</td>
+                                <td>{{lista_clientes.apellidos}}</td>
+                                <td>{{lista_clientes.citizenship}}</td>
+                                <td>{{lista_clientes.fecha_entrada|date:"d/m/Y"}}</td>
+                                <td>{{lista_clientes.cantidad_noches}}</td>
+                                <td>{{lista_clientes.fecha_salida|date:"d/m/Y"}}</td>
+                                <td>{{lista_clientes.ingreso_alojamiento}}</td>
+                                <td>{{lista_clientes.ingreso_desayuno}}</td>
+                                <td>{{lista_clientes.ingreso_almuerzo}}</td>
+                                <td>{{lista_clientes.ingreso_total}}</td>
+                                {% comment %} <td style="white-space: nowrap;">
+                                    <a href="/eliminar_cliente/{{cliente.documento_identidad}}"
+                                        class="btn-outline-secondary d-inline-block"><i class="bi bi-eye-fill"></i></a>
+                                    <a href="/edicion_cliente/{{cliente.documento_identidad}}"
+                                        class="btn-outline-secondary d-inline-block"><i class="bi bi-pencil"></i></a>
+                                    <a href="/eliminar_cliente/{{cliente.documento_identidad}}"
+                                        class="btn-outline-secondary d-inline-block"><i class="bi bi-trash"></i></a>
+                                </td> {% endcomment %}
+                                <td style="white-space: nowrap;">
+                                    {% comment %}
+                                    <a href="/eliminar_cliente/{{cliente.documento_identidad}}"
+                                        class="btn-outline-secondary d-inline-block"><i class="bi bi-eye-fill"></i></a>
+                                    {%endcomment %}
+                                    <a href="#collapse_editar{{lista_clientes.documento_identidad}}"
+                                        class="btn-outline-secondary d-inline-block" data-bs-toggle="modal"
+                                        aria-expanded="false"
+                                        data-bs-target="#collapse_editar{{lista_clientes.documento_identidad}}"><i
+                                            class="bi bi-pencil"></i></a>
+                                    <a href="#collapse_delete{{lista_clientes.documento_identidad}}"
+                                        class="btn-outline-secondary d-inline-block" data-bs-toggle="modal"
+                                        aria-expanded="false"
+                                        data-bs-target="#collapse_delete{{lista_clientes.documento_identidad}}"><i
+                                            class="bi bi-trash"></i></a>
+                                </td>
+
+                            </tr>
+                            <div class="modal fade" id="collapse_delete{{lista_clientes.documento_identidad}}"
+                                data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar cliente
+                                                registrado</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <form class="row g-3 p-3" action="{% url 'delete_cliente' lista_clientes.pk %}"
+                                            method="POST">
+                                            {% csrf_token %}
+                                            <div class="modal-body">
+                                                <h3 class="modal-title fs-5" id="staticBackdropLabel">¿Seguro que deseas
+                                                    eliminar al cliente: {{lista_clientes}}?</h3>
+
+                                            </div>
+                                            <div class="col-12 d-grid gap-4 d-md-flex justify-content-md-end"
+                                                style="padding: 10px;">
+                                                <br>
+                                                <button class="btn btn-danger" type="submit">
+                                                    Eliminar
+                                                </button>
+
+                                                <a class="btn btn-primary" data-bs-dismiss="modal">
+                                                    Cancelar
+                                                </a>
+
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </tbody>
+
+                        {% empty %}
+
+                           <tr>
+                            <td colspan="14">
+                                No se encontraron resultados.
+                            </td>
+                           </tr> 
+
+                        {% endfor %}
+                        <!-- Modal -->
+
+
+                    </table>
+                </div>
+
             </ul>
-                
+            <div class="container">
+                <a class="btn btn-outline-primary btn-sm rounded-pill shadow p-2" href="{% url 'home' %}"
+                    style="position: fixed; bottom: 25px;">
+                    <i class="bi bi-house-fill me-1"></i>Menú principal
+                </a>
+            </div>
 
         </div>
     </div>
 
 
-    
+
     {% endblock %}

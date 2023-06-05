@@ -124,9 +124,10 @@
         </div>
         <div class="col-md-9">
             <!-- Información -->
-            <h1>Registro de clientes</h1>
-           
-            
+            <br>
+            <h1 class="text-center">Registro de clientes</h1>
+
+
             {% comment %}
             <form action="/registro_clientes/" method="POST">
                 {% csrf_token %}
@@ -136,7 +137,7 @@
                 {% endif %}
 
                 {{form}}
-                
+
                 <button class="btn btn-primary my-class" style="margin-top: 100px; margin-left: 20px;">
                     Registrar
                 </button>
@@ -147,103 +148,133 @@
 
             </form>
             {% endcomment %}
-            <form class="row g-3 p-3" action="{% url 'registro_clientes' %}" method="POST">
+
+            <form class="row g-3 p-3" action="/registro_clientes/" method="POST">
                 {% csrf_token %}
 
                 {% if form.errors %}
                 <h5 class="alert alert-danger">{{form.errors}}</h5>
                 {% endif %}
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <label for="validationDefault01" class="form-label">No. Orden</label>
-                    <input type="number" name="no_de_orden" class="form-control" min="0" id="validationDefault01" required>
-                  </div>
-                <div class="col-md-4">
-                  <label for="validationDefault01" class="form-label">Nombre</label>
-                  <input type="text" name="nombre" class="form-control" id="validationDefault01" required>
+                    <input type="number" name="no_de_orden" class="form-control" min="0" id="validationDefault01"
+                        required>
                 </div>
-                <div class="col-md-4">
-                  <label for="validationDefault02" class="form-label">Apellidos</label>
-                  <input type="text" name="apellidos" class="form-control" id="validationDefault02" required>
+                <div class="col-md-5">
+                    <label for="validationDefault01" class="form-label">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" id="validationDefault01" required>
                 </div>
-                <div class="col-md-4">
-                  <label for="validationDefaultUsername" class="form-label">Documento de Identidad</label>
-                  <div class="input-group">
-                    <input type="text" name="documento_identidad" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required>
-                  </div>
+                <div class="col-md-5">
+                    <label for="validationDefault02" class="form-label">Apellidos</label>
+                    <input type="text" name="apellidos" class="form-control" id="validationDefault02" required>
                 </div>
                 <div class="col-md-3">
-                    <label for="validationDefault04" class="form-label">Ciudadania</label>
+                    <label for="validationDefaultUsername" class="form-label">Documento de identidad</label>
+                    <div class="input-group">
+                        <input type="text" name="documento_identidad" class="form-control"
+                            id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" required>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="validationDefault04" class="form-label">Ciudadano</label>
+                    {% comment %} <a class="btn btn-link" href="{% url 'create_ciudadano'  %}"><i class="mdi mdi-reply"></i> (+)</a> {% endcomment %}
+                    <a class="btn btn-outline-primary btn-sm p-1" href="{% url 'create_ciudadano'  %}">
+                        <i class="mdi mdi-plus"></i>
+                      </a>                      
                     <select class="form-select" name="citizenship" id="validationDefault04" required>
                         <option selected disabled value="">Eligir...</option>
                         {% for ciudadania in ciudadanias %}
-                            <option>{{ciudadania}}</option>
-                            
-                        {% endfor %}
+                        <option value="{{ciudadania.id}}">{{ciudadania}}</option>
+
+                        {% endfor %} 
+                        {% comment %} <option>Alemania</option>
+                        <option>Gran Bretaña</option> {% endcomment %}
                     </select>
-                  </div>
-                <div class="col-md-6">
-                    <label for="validationDefault03" class="form-label">Fecha de Nacimiento</label>
-                    <input type="date"  name="fecha_nacimiento" class="form-control" id="validationDefault03" required>
-                  </div>
-                  <div class="col-md-3">
+                </div>
+                <div class="col-md-3">
+                    <label for="validationDefault03" class="form-label">Fecha de nacimiento</label>
+                    <input type="date" name="fecha_nacimiento" class="form-control" id="validationDefault03" required>
+                </div>
+                <div class="col-md-3">
                     <label for="validationDefault04" class="form-label">Estado</label>
-                    <select class="form-select"  name="estado" id="validationDefault04" required>
-                      <option selected disabled value="">Eligir...</option>
-                      <option>Principal</option>
-                      <option>Acompañante</option>
+                    <select class="form-select" name="estado" id="validationDefault04" required>  
+                        <option selected disabled value="">Eligir...</option>
+                        <option>Principal</option>
+                        <option>Acompañante</option>
                     </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="validationDefault03" class="form-label">Fecha de Entrada</label>
+                </div>
+                <div class="col-md-3">
+                    <label for="validationDefault03" class="form-label">Fecha de entrada</label>
                     <input type="date" name="fecha_entrada" class="form-control" id="validationDefault03" required>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="validationDefault03" class="form-label">Fecha de Salida</label>
+                </div>
+                <div class="col-md-3">
+                    <label for="validationDefault03" class="form-label">Cantidad de noches</label>
+                    <input type="number" name="cantidad_noches" min='0' class="form-control" id="validationDefault03"
+                        required>
+                </div>
+                <div class="col-md-3">
+                    <label for="validationDefault03" class="form-label">Fecha de salida</label>
                     <input type="date" name="fecha_salida" class="form-control" id="validationDefault03" required>
-                  </div>
-                  <div class="col-md-6">
-                    <label for="validationDefault03" class="form-label">Cantidad de Noches</label>
-                    <input type="number" name="cantidad_noches" min='0' class="form-control" id="validationDefault03" required>
-                  </div>
-                  <div class="col-md-3">
-                    <label for="validationDefault04" class="form-label">Objeto de Arrendamiento</label>
+                </div>
+                <div class="col-md-3">
+                    <label for="validationDefault04" class="form-label">Objeto de arrendamiento</label>
+                    <a class="btn btn-outline-primary btn-sm p-1" href="{% url 'create_objeto_arr' %}"><i class="mdi mdi-plus"></i></a>
                     <select class="form-select" name="objeto_arrendamiento" id="validationDefault04" required>
                         <option selected disabled value="">Eligir...</option>
                         {% for room in rooms %}
-                            <option>{{room}}</option>
-                            
-                        {% endfor %}
+                            <option value="{{room.id}}">{{room}}</option>
+
+                        {% endfor %} 
+
+                        {% comment %} <option>7 habitaciones y 5 espacios</option> {% endcomment %}
+
                     </select>
-                  </div>
-                  <div class="col-md-3">
-                    <label for="validationDefault05" class="form-label">Recibo de Pago</label>
-                    <input type="number" name="recibo_pago" class="form-control" id="validationDefault05" required>
-                  </div>
-                  <div class="col-md-3">
-                    <label for="validationDefault05" class="form-label">Info de registro</label>
-                    <input type="number" name="info_registro" class="form-control" id="validationDefault05" required>
-                  </div>
-                
-                <div class="col-md-3">
-                  <label for="validationDefault05" class="form-label">Ingreso de Desayuno</label>
-                  <input type="text" name="ingreso_desayuno" class="form-control" id="validationDefault05" required>
+                    
                 </div>
                 <div class="col-md-3">
-                    <label for="validationDefault05" class="form-label">Ingreso de Almuerzo</label>
-                    <input type="text" name="ingreso_almuerzo" class="form-control" id="validationDefault05" required>
-                  </div>
-                  
-                
-                <div class="col-12">
+                    <label for="validationDefault05" class="form-label">Recibo de pago</label>
+                    <input type="number" name="recibo_pago" class="form-control" id="validationDefault05" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="validationDefault05" class="form-label">Info registro</label>
+                    <input type="number" name="info_registro" class="form-control" id="validationDefault05" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="validationDefault05" class="form-label">Ingreso por alojamiento</label>
+                    <input type="number" name="ingreso_alojamiento" class="form-control" id="validationDefault05" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="validationDefault05" class="form-label">Ingreso por desayuno</label>
+                    <input type="number" name="ingreso_desayuno" class="form-control" id="validationDefault05" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="validationDefault05" class="form-label">Ingreso por almuerzo</label>
+                    <input type="number" name="ingreso_almuerzo" class="form-control" id="validationDefault05" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="validationDefault05" class="form-label">Ingreso total</label>
+                    <input type="number" name="ingreso_total" class="form-control" id="validationDefault05" required>
+                </div>
+
+            
+                <div class="col-12 d-grid gap-4 d-md-flex justify-content-md-end">
+                    <br>
                 <button class="btn btn-primary" type="submit">
                     Registrar
                 </button>
 
-                <button class="btn btn-primary" >
-                    Cancelar
-                </button>
-            </div>
-              </form>
+                    <button class="btn btn-primary">
+                        Cancelar
+                    </button>
+
+                </div>
+            </form>
+
+            <div class="container">
+                <a class="btn btn-outline-primary btn-sm rounded-pill shadow p-2" href="{% url 'home' %}" style="position: fixed; bottom: 25px;">
+                  <i class="bi bi-house-fill me-1"></i>Menú principal
+                </a>
+              </div>
         </div>
     </div>
 
